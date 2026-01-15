@@ -133,6 +133,7 @@ The training pipeline uses **Albumentations** to apply a richer and more diverse
 After the geometric transformations, **color and illumination variations** are introduced through random **brightness and contrast adjustments, hue and saturation shifts, and gamma corrections**. To further improve robustness to image quality variations common in real-world data, the pipeline occasionally applies **mild blurring or Gaussian noise**. Finally, the image is normalized using ImageNet mean and standard deviation and converted into a PyTorch tensor using ToTensorV2
 
 Training strategy is the same as before, freeze backbone and train only classifier head.
+<img width="202" height="210" alt="image" src="https://github.com/user-attachments/assets/490a515f-6817-415d-85c5-a0abf0685ebc" />
 
 
 ### **6. Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation**
@@ -142,6 +143,8 @@ Training strategy is the same as before, freeze backbone and train only classifi
 * **In Stage 2**, the best Stage 1 model is reloaded and only the final EfficientNet block plus the classifier head are fine-tuned using a lower learning rate for the backbone. 
 * The final model is evaluated on the test set using PR-AUC and ROC-AUC.
 
+<img width="479" height="377" alt="image" src="https://github.com/user-attachments/assets/9100bbed-626c-427b-a648-8ee188231d89" />
+
 
 
 ### **7. STACKING - Convolutional Neural Network (CNN) Model - EfficientNet-B0 with Metadata Probability**
@@ -149,12 +152,15 @@ Training strategy is the same as before, freeze backbone and train only classifi
 * Here CNN image-based probabilities and metadata-based probabilities are combined by training a logistic regression model on the validation set.
 * The stacked model is then evaluated on the test set and compared against the standalone CNN and metadata models to measure performance gains.
 
+<img width="209" height="217" alt="image" src="https://github.com/user-attachments/assets/782d566e-02b4-4df7-a3c4-08acde18b47c" />
+
 ### **8. Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler**
 
 Two-stage fine-tune: (S1) head-only, (S2) last block + head (lower LR)
 Imbalance handling : WeightedRandomSampler
 Loss : BCEWithLogitsLoss
 Stronger Albumentations aug: Affine and color and blur/noise and coarse dropout
+<img width="1535" height="542" alt="image" src="https://github.com/user-attachments/assets/96c60b3c-fb53-466b-afaa-c36a534be5a7" />
 
 Best reseults.
 
@@ -174,12 +180,4 @@ Best reseults.
 A recall target around **0.85** represents a practical screening compromise.
 
 ---
-
-## **TL;DR for Recruiters**
-
-- Built an end-to-end deep learning pipeline under real-world constraints  
-- Addressed extreme class imbalance with appropriate metrics and thresholds  
-- Prevented patient-level data leakage  
-- Used transfer learning, staged fine-tuning, and ensemble stacking  
-- Deployed the final model as an interactive demo  
 
