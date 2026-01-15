@@ -122,17 +122,20 @@ All feature statistics were learned on the training set and applied identically 
 ### **1. Baseline Model with metadata: LogisticRegression**
 
 Used patient-level metadata with guaranteed malignant/ benign data within train, val test, data to establish a baseline. this also demonstrates the predictive value of metadata alone.
+
 <img width="641" height="471" alt="image" src="https://github.com/user-attachments/assets/f38f3f9e-0380-4540-ad8c-8cc5b8cd26ef" />
 
 
 ### **2.LogisticRegression with Hyperparameter tuning - Cross Validation and GridSearch**
 Class-weighted Logistic Regression (which up-weights the rare positive class to counter the 1–2% prevalence) is fitted and tuned with **5-fold GroupKFold** by patient_id to avoid same-patient leakage across folds. Then **GridSearch** explores **L1 vs L2 regularization** (sparsity/selective feature use vs smooth shrinkage) and **different regularization strengths** (C) to select the best setting by **cross-validated** PR-AUC.
-<img width="218" height="458" alt="image" src="https://github.com/user-attachments/assets/13bef9ff-ed05-45af-9c50-aca9458b081f" />
+
+<img width="318" height="558" alt="image" src="https://github.com/user-attachments/assets/13bef9ff-ed05-45af-9c50-aca9458b081f" />
 
 
 ### **3. Baseline Model with metadata: Gradient Boosted Decision Trees (GBDT) - HistGradientBoostingClassifier**
 
 Trained a metadata-only **HistGradientBoostingClassifier** with one-hot encoded categorical features and median-imputed numeric features. I used HistGradientBoostingClassifier because **Gradient Boosted Decision Trees** can capture non linear relationships and feature interactions that logistic regression often misses. 
+
 <img width="659" height="462" alt="image" src="https://github.com/user-attachments/assets/d4472677-b88e-4e9b-961e-4f9094b3c558" />
 
 
@@ -150,6 +153,7 @@ Used (torchvision) for light augmentation (flip and small rotation).
 Imbalance handling: Used pos_weight = neg/pos inside **BCEWithLogitsLoss** to upweight positives (malignant).
 
 Used **AdamW** optimizer during training to update the model’s trainable weights and to reduce the **loss**. 
+
 <img width="1543" height="468" alt="image" src="https://github.com/user-attachments/assets/3ae30b9c-b33b-46e5-885f-bcc2685aeaf7" />
 
 
@@ -160,7 +164,9 @@ The training pipeline uses **Albumentations** to apply a richer and more diverse
 After the geometric transformations, **color and illumination variations** are introduced through random **brightness and contrast adjustments, hue and saturation shifts, and gamma corrections**. To further improve robustness to image quality variations common in real-world data, the pipeline occasionally applies **mild blurring or Gaussian noise**. Finally, the image is normalized using ImageNet mean and standard deviation and converted into a PyTorch tensor using ToTensorV2
 
 Training strategy is the same as before, freeze backbone and train only classifier head.
-<img width="202" height="210" alt="image" src="https://github.com/user-attachments/assets/490a515f-6817-415d-85c5-a0abf0685ebc" />
+
+
+<img width="302" height="310" alt="image" src="https://github.com/user-attachments/assets/490a515f-6817-415d-85c5-a0abf0685ebc" />
 
 
 ### **6. Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation**
@@ -170,7 +176,7 @@ Training strategy is the same as before, freeze backbone and train only classifi
 * **In Stage 2**, the best Stage 1 model is reloaded and only the final EfficientNet block plus the classifier head are fine-tuned using a lower learning rate for the backbone. 
 * The final model is evaluated on the test set using PR-AUC and ROC-AUC.
 
-<img width="479" height="377" alt="image" src="https://github.com/user-attachments/assets/9100bbed-626c-427b-a648-8ee188231d89" />
+<img width="305" height="220" alt="image" src="https://github.com/user-attachments/assets/9100bbed-626c-427b-a648-8ee188231d89" />
 
 
 
@@ -179,7 +185,7 @@ Training strategy is the same as before, freeze backbone and train only classifi
 * Here CNN image-based probabilities and metadata-based probabilities are combined by training a logistic regression model on the validation set.
 * The stacked model is then evaluated on the test set and compared against the standalone CNN and metadata models to measure performance gains.
 
-<img width="209" height="217" alt="image" src="https://github.com/user-attachments/assets/782d566e-02b4-4df7-a3c4-08acde18b47c" />
+<img width="309" height="317" alt="image" src="https://github.com/user-attachments/assets/782d566e-02b4-4df7-a3c4-08acde18b47c" />
 
 ### **8. Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler**
 
