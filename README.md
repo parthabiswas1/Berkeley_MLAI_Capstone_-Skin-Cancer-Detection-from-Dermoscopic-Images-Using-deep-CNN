@@ -8,15 +8,22 @@ https://github.com/parthabiswas1/Berkeley_MLAI_Capstone_-Skin-Cancer-Detection-f
 ---
 ## **Sample Dermoscopic images**
 <img width="247" height="246" alt="image" src="https://github.com/user-attachments/assets/f4634b46-8a1d-4c39-b741-9b271a22de24" />
+
 ISIC_0250839	IP_6234053	male	75	head/neck	melanoma	malignant	1
 
+
 <img width="248" height="248" alt="image" src="https://github.com/user-attachments/assets/9bc24baf-25bd-4ef4-8885-36ece08f44fd" />
+
 ISIC_0250064	IP_4921034	female	75	lower extremity	nevus	benign	0
 
+
 <img width="247" height="249" alt="image" src="https://github.com/user-attachments/assets/2e04e6a1-c2a1-491b-b6c2-e8a23c9a86c6" />
+
 ISIC_0247330	IP_3232631	female	65	lower extremity	melanoma	malignant	1
 
+
 <img width="246" height="244" alt="image" src="https://github.com/user-attachments/assets/08c880d7-57c2-4ffc-8875-89ae93648b7d" />
+
 ISIC_0250455	IP_7748972	male	45	torso	unknown	benign	0
 
 
@@ -75,13 +82,13 @@ A very limited set of metadata were provided with the images.
 The following was done:
 
 *   Missing-value and metadata sanity checks
-  <img width="635" height="464" alt="image" src="https://github.com/user-attachments/assets/74466486-f474-4404-9765-98ac185a4a01" />
+*  <img width="445" height="325" alt="image" src="https://github.com/user-attachments/assets/74466486-f474-4404-9765-98ac185a4a01" />
 
 *   **Class imbalance analysis:** The splits had to be carefully done to ensure both benign and malignant images were present in the train, val and test dataset in similar proportions.
-*   <img width="623" height="460" alt="image" src="https://github.com/user-attachments/assets/b6f8b1ba-54ae-4b45-952e-3b2359d32454" />
+*   <img width="436" height="322" alt="image" src="https://github.com/user-attachments/assets/b6f8b1ba-54ae-4b45-952e-3b2359d32454" />
 
 *   **Patient-level distribution checks:** Ensured that the train, val , test splits did not contain the same patient's dermascoping images.
-*   <img width="624" height="454" alt="image" src="https://github.com/user-attachments/assets/b1f84680-ec34-4736-a69d-35de440c23b0" /><img width="625" height="463" alt="image" src="https://github.com/user-attachments/assets/c0eea725-d40a-49f0-ba5d-8f4b3c3c60c2" />
+*   <img width="437" height="318" alt="image" src="https://github.com/user-attachments/assets/b1f84680-ec34-4736-a69d-35de440c23b0" /><img width="625" height="463" alt="image" src="https://github.com/user-attachments/assets/c0eea725-d40a-49f0-ba5d-8f4b3c3c60c2" />
 
 
 ---
