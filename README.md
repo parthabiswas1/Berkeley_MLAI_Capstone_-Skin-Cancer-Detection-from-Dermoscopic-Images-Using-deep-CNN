@@ -177,7 +177,10 @@ Best reseults.
 | Stacking: LogisticRegression on (CNN prob + metadata prob) | — | — | 0.10762 | 0.8526 | class_weight=balanced | trained on validation stack features; evaluated on test |
 | **Best CNN: EfficientNet-B0 (2-stage, strong Albumentations + sampler)** | **0.11283** | **0.8610** | **0.12724** | **0.8659** | WeightedRandomSampler | Stage1=head-only; Stage2=last block + head; loss=BCE; ckpt=effb0_albu_s2_stage2_lastblock_best.pt |
 
-A recall target around **0.85** represents a practical screening compromise.
+
+*(Each run took a long time to complete. Some did not complete and so the cells have been left blank)*
+
+### The Best model performance was by Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler
 
 ---
 
