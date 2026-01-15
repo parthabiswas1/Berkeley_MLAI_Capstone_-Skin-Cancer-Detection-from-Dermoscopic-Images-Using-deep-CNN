@@ -6,6 +6,24 @@
 https://github.com/parthabiswas1/Berkeley_MLAI_Capstone_-Skin-Cancer-Detection-from-Dermoscopic-Images-Using-deep-CNN
 
 ---
+## **Sample Dermoscopic images**
+<img width="247" height="246" alt="image" src="https://github.com/user-attachments/assets/f4634b46-8a1d-4c39-b741-9b271a22de24" />
+ISIC_0250839	IP_6234053	male	75	head/neck	melanoma	malignant	1
+
+<img width="248" height="248" alt="image" src="https://github.com/user-attachments/assets/9bc24baf-25bd-4ef4-8885-36ece08f44fd" />
+ISIC_0250064	IP_4921034	female	75	lower extremity	nevus	benign	0
+
+<img width="247" height="249" alt="image" src="https://github.com/user-attachments/assets/2e04e6a1-c2a1-491b-b6c2-e8a23c9a86c6" />
+ISIC_0247330	IP_3232631	female	65	lower extremity	melanoma	malignant	1
+
+<img width="246" height="244" alt="image" src="https://github.com/user-attachments/assets/08c880d7-57c2-4ffc-8875-89ae93648b7d" />
+ISIC_0250455	IP_7748972	male	45	torso	unknown	benign	0
+
+
+
+
+
+---
 
 ## **Executive Summary**
 
