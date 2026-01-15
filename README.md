@@ -88,7 +88,9 @@ The following was done:
 *   <img width="436" height="322" alt="image" src="https://github.com/user-attachments/assets/b6f8b1ba-54ae-4b45-952e-3b2359d32454" />
 
 *   **Patient-level distribution checks:** Ensured that the train, val , test splits did not contain the same patient's dermascoping images.
-*   <img width="437" height="318" alt="image" src="https://github.com/user-attachments/assets/b1f84680-ec34-4736-a69d-35de440c23b0" /><img width="625" height="463" alt="image" src="https://github.com/user-attachments/assets/c0eea725-d40a-49f0-ba5d-8f4b3c3c60c2" />
+*   <img width="437" height="318" alt="image" src="https://github.com/user-attachments/assets/b1f84680-ec34-4736-a69d-35de440c23b0" />
+
+*   <img width="438" height="324" alt="image" src="https://github.com/user-attachments/assets/c0eea725-d40a-49f0-ba5d-8f4b3c3c60c2" />
 
 
 ---
