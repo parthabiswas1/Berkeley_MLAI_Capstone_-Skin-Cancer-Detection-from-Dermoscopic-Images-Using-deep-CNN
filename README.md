@@ -121,22 +121,22 @@ All feature statistics were learned on the training set and applied identically 
 
 ### **1. Baseline Model with metadata: LogisticRegression**
 
-Used patient-level metadata with guaranteed malignant/ benign data within train, val test, data to establish a baseline. this also demonstrates the predictive value of metadata alone.
+Used patient-level metadata with guaranteed malignant/ benign data within train and val sets to establish a baseline. this also demonstrates the predictive value of metadata alone.
 
-<img width="641" height="471" alt="image" src="https://github.com/user-attachments/assets/f38f3f9e-0380-4540-ad8c-8cc5b8cd26ef" />
+<img width="594" height="206" alt="image" src="https://github.com/user-attachments/assets/cf337106-951d-4110-ae59-4543a6fda6c8" />
 
 
 ### **2.LogisticRegression with Hyperparameter tuning - Cross Validation and GridSearch**
 Class-weighted Logistic Regression (which up-weights the rare positive class to counter the 1–2% prevalence) is fitted and tuned with **5-fold GroupKFold** by patient_id to avoid same-patient leakage across folds. Then **GridSearch** explores **L1 vs L2 regularization** (sparsity/selective feature use vs smooth shrinkage) and **different regularization strengths** (C) to select the best setting by **cross-validated** PR-AUC.
 
-<img width="318" height="558" alt="image" src="https://github.com/user-attachments/assets/13bef9ff-ed05-45af-9c50-aca9458b081f" />
+<img width="594" height="206"  alt="image" src="https://github.com/user-attachments/assets/6f7e22c9-9a1a-42c1-a2b1-af46b08537bf" />
 
 
-### **3. Baseline Model with metadata: Gradient Boosted Decision Trees (GBDT) - HistGradientBoostingClassifier**
+### **3. BGradient Boosted Decision Trees (GBDT) - HistGradientBoostingClassifier**
 
 Trained a metadata-only **HistGradientBoostingClassifier** with one-hot encoded categorical features and median-imputed numeric features. I used HistGradientBoostingClassifier because **Gradient Boosted Decision Trees** can capture non linear relationships and feature interactions that logistic regression often misses. 
 
-<img width="659" height="462" alt="image" src="https://github.com/user-attachments/assets/d4472677-b88e-4e9b-961e-4f9094b3c558" />
+<img width="594" height="206"  alt="image" src="https://github.com/user-attachments/assets/45612ddb-70c4-4412-bd18-aa48c072df6a" />
 
 
 ### **4. Image-Only Convolutional Neural Network (CNN) Model EfficientNet-B0**
@@ -154,7 +154,7 @@ Imbalance handling: Used pos_weight = neg/pos inside **BCEWithLogitsLoss** to up
 
 Used **AdamW** optimizer during training to update the model’s trainable weights and to reduce the **loss**. 
 
-<img width="1543" height="468" alt="image" src="https://github.com/user-attachments/assets/3ae30b9c-b33b-46e5-885f-bcc2685aeaf7" />
+<img width="594" height="206"  alt="image" src="https://github.com/user-attachments/assets/f507ed81-45b1-46e8-919b-37b6cd8acfb3" />
 
 
 ### **5. Convolutional Neural Network (CNN) Model - EfficientNet-B0 with image aumentaion using Albumentations**
@@ -165,8 +165,7 @@ After the geometric transformations, **color and illumination variations** are i
 
 Training strategy is the same as before, freeze backbone and train only classifier head.
 
-
-<img width="302" height="310" alt="image" src="https://github.com/user-attachments/assets/490a515f-6817-415d-85c5-a0abf0685ebc" />
+<img width="594" height="206" alt="image" src="https://github.com/user-attachments/assets/49acb4bc-2965-470b-9575-70ee0daac16a" />
 
 
 ### **6. Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation**
@@ -176,42 +175,48 @@ Training strategy is the same as before, freeze backbone and train only classifi
 * **In Stage 2**, the best Stage 1 model is reloaded and only the final EfficientNet block plus the classifier head are fine-tuned using a lower learning rate for the backbone. 
 * The final model is evaluated on the test set using PR-AUC and ROC-AUC.
 
-<img width="305" height="220" alt="image" src="https://github.com/user-attachments/assets/9100bbed-626c-427b-a648-8ee188231d89" />
+
+<img width="594" height="206" alt="image" src="https://github.com/user-attachments/assets/0a26626d-e839-48d9-9219-6f45c9f13ff3" />
 
 
-
-### **7. STACKING - Convolutional Neural Network (CNN) Model - EfficientNet-B0 with Metadata Probability**
-
-* Here CNN image-based probabilities and metadata-based probabilities are combined by training a logistic regression model on the validation set.
-* The stacked model is then evaluated on the test set and compared against the standalone CNN and metadata models to measure performance gains.
-
-<img width="309" height="317" alt="image" src="https://github.com/user-attachments/assets/782d566e-02b4-4df7-a3c4-08acde18b47c" />
-
-### **8. Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler**
+### **7 Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler**
 
 Two-stage fine-tune: (S1) head-only, (S2) last block + head (lower LR)
 Imbalance handling : WeightedRandomSampler
 Loss : BCEWithLogitsLoss
 Stronger Albumentations aug: Affine and color and blur/noise and coarse dropout
-<img width="1535" height="542" alt="image" src="https://github.com/user-attachments/assets/96c60b3c-fb53-466b-afaa-c36a534be5a7" />
 
 Best reseults.
 
-## Model Results Summary
+<img width="594" height="206" alt="image" src="https://github.com/user-attachments/assets/621daf97-8044-43ed-93c3-011f3790fb90" />
 
-| Model executed | Val PR-AUC | Val ROC-AUC | Test PR-AUC | Test ROC-AUC | Imbalance handling | Key parameters / hyperparameters |
-|---|---:|---:|---:|---:|---|---|
-| Metadata baseline: LogisticRegression | 0.01966 | — | 0.01719 | — | none | n_features=12; train/val/test split |
-| Metadata tuned: LogisticRegression + GridSearchCV | 0.02533 | — | 0.01756 | — | implicit via tuning | best_cv_pr_auc=0.31942; C=0.01; penalty=l2; solver=liblinear |
-| Metadata baseline: HistGradientBoostingClassifier | 0.01839 | — | 0.01783 | — | none | one-hot encoding + median imputation |
-| CNN: EfficientNet-B0 (head-only, torchvision aug) | 0.09030 | 0.8289 | — | — | pos_weight=54.63 | IMG=224; batch=32; epochs=10; patience=2; freeze backbone; train head; ckpt=effb0_head_only_best.pt |
-| CNN: EfficientNet-B0 (head-only, Albumentations aug) | 0.09340 | 0.8522 | — | — | pos_weight=54.63 | IMG=224; batch=32; epochs=10; patience=2; stronger augmentation; ckpt=effb0_head_only_best_albu.pt |
-| CNN: EfficientNet-B0 (2-stage fine-tune, Albumentations) | 0.10043 | 0.8561 | — | — | pos_weight=54.63 | Stage1=head-only; Stage2=last block + head; early stopping; ckpt=effb0_stage2_lastblock_best.pt |
-| Stacking: LogisticRegression on (CNN prob + metadata prob) | — | — | 0.10762 | 0.8526 | class_weight=balanced | trained on validation stack features; evaluated on test |
-| **Best CNN: EfficientNet-B0 (2-stage, strong Albumentations + sampler)** | **0.11283** | **0.8610** | **0.12724** | **0.8659** | WeightedRandomSampler | Stage1=head-only; Stage2=last block + head; loss=BCE; ckpt=effb0_albu_s2_stage2_lastblock_best.pt |
+### **8 ##STACKING - IMAGE MODEL: Convolutional Neural Network (CNN) Model - EfficientNet-B0 using two stage fine tuning and strong albumentation and weightedRandomSampler with METADATA MODEL: LogisticRegression with Cross Validation and GridSearch**
+
+This code builds a stacked ensemble that combines the EfficientNet-B0 CNN trained with strong Albumentations augmentation and WeightedRandomSampler with the tuned metadata LogisticRegression (GroupKFold/GridSearch). It generates out-of-fold (OOF) probability predictions for both base models on the TRAIN set (K=3), fits a LogisticRegression stacker on those OOF features, and then evaluates the stacker on VAL using model probabilities.
+
+### **9 Evaluate best performing model on unseen TEST set**
+
+Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler had the best rank using PR-AUC. this model was used on the Test set.
+
+<img width="594" height="206" alt="image" src="https://github.com/user-attachments/assets/d7ab3e3c-501c-426a-95a9-7e039ea899fb" />
 
 
-*(Each run took a long time to complete. Some did not complete and so the cells have been left blank)*
+
+# Capstone Results Summary
+
+
+|   # | Model                                                                   | Split   |   PR-AUC |   ROC-AUC |   Top-5% Recall |   Top-5% Precision |   Top-10% Recall |   Top-10% Precision |
+|----:|:------------------------------------------------------------------------|:--------|---------:|----------:|----------------:|-------------------:|-----------------:|--------------------:|
+|   1 | Metadata LR (baseline)                                                  | VAL     |  0.01966 |   0.52767 |          0.0575 |             0.0194 |           0.1494 |              0.0251 |
+|   2 | Metadata LR (GroupKFold & GridSearch tuned)                             | VAL     |  0.02533 |   0.58207 |          0.1264 |             0.0426 |           0.2299 |              0.0387 |
+|   3 | Metadata HGB (baseline)                                                 | VAL     |  0.01839 |   0.53924 |          0      |             0      |           0.1379 |              0.0232 |
+|   4 | CNN EffNet-B0 (head-only, pos_weight)                                   | VAL     |  0.09295 |   0.81424 |          0.3103 |             0.1047 |           0.4483 |              0.0754 |
+|   5 | CNN EffNet-B0 (head-only & Albumentations)                              | VAL     |  0.08431 |   0.83707 |          0.2644 |             0.0891 |           0.3563 |              0.06   |
+|   6 | CNN EffNet-B0 (2-stage & Albumentations, pos_weight)                    | VAL     |  0.10753 |   0.8502  |          0.3218 |             0.1085 |           0.4943 |              0.0832 |
+|   7 | **CNN EffNet-B0 (2-stage & strong Albumentations + WeightedRandomSampler)** | VAL     |  **0.10868** |   0.85861 |          0.3218 |             0.1085 |           0.4713 |              0.0793 |
+|   8 | Stacking OOF(K=3): CNN & tuned LR(meta)                                 | VAL     |  0.09434 |   0.84907 |          0.2874 |             0.0969 |           0.4138 |              0.0696 |
+|   9 | Best model on TEST (same as #7)                                         | TEST    |  0.13381 |   0.86871 |          0.3761 |             0.1285 |           0.5046 |              0.0863 |
+
 
 ### The Best model performance was by Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler
 
