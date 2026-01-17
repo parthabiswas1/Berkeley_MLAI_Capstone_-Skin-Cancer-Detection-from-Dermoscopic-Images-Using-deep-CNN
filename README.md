@@ -220,12 +220,15 @@ Scanned all possible thresholds on the validation set using the precision–reca
 |   4 | CNN EffNet-B0 (head-only, pos_weight)                                   | VAL     |  0.09295 |   0.81424 |          0.3103 |             0.1047 |           0.4483 |              0.0754 |
 |   5 | CNN EffNet-B0 (head-only & Albumentations)                              | VAL     |  0.08431 |   0.83707 |          0.2644 |             0.0891 |           0.3563 |              0.06   |
 |   6 | CNN EffNet-B0 (2-stage & Albumentations, pos_weight)                    | VAL     |  0.10753 |   0.8502  |          0.3218 |             0.1085 |           0.4943 |              0.0832 |
-|   7 | **CNN EffNet-B0 (2-stage & strong Albumentations + WeightedRandomSampler)** | VAL     |  **0.10868** |   0.85861 |          0.3218 |             0.1085 |           0.4713 |              0.0793 |
+|   7 | **CNN EffNet-B0 (2-stage & strong Albumentations & WeightedRandomSampler)** | VAL     |  **0.10868** |   0.85861 |          0.3218 |             0.1085 |           0.4713 |              0.0793 |
 |   8 | Stacking OOF(K=3): CNN & tuned LR(meta)                                 | VAL     |  0.09434 |   0.84907 |          0.2874 |             0.0969 |           0.4138 |              0.0696 |
 |   9 | Best model on TEST (same as #7)                                         | TEST    |  0.13381 |   0.86871 |          0.3761 |             0.1285 |           0.5046 |              0.0863 |
 
 
-### The Best model performance was by Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler
+# Best Model
+The Best model performance was by **Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler** 
+
+
 
 ---
 
