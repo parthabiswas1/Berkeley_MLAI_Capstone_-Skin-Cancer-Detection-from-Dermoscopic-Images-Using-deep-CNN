@@ -38,7 +38,7 @@ Skin cancer screening systems face a difficult trade-off: they must identify as 
 
 In this project, I explored whether modern deep learning models can still be useful for **screening purposes** when trained on **low-resolution dermoscopic images** and limited patient metadata. Rather than chasing maximum benchmark accuracy, the focus was on building a **realistic, reproducible pipeline** that mirrors real-world constraints such as storage limits, compute budgets, and noisy data.
 
-The work compares traditional metadata-based models, image-only deep learning models, and a combined ensemble approach. By carefully selecting evaluation metrics and decision thresholds, the final models demonstrate how performance can be tuned toward **high sensitivity screening**, with clearly understood trade-offs. The project concludes with an interactive demo that shows how these models could be used in practice, not just evaluated offline.
+The work compares traditional metadata-based models, image-only deep learning models, and a combined ensemble approach. By carefully selecting evaluation metrics and decision thresholds, the final models demonstrate how performance can be tuned toward **high sensitivity screening**, with clearly understood trade-offs. <!-- The project concludes with an interactive demo that shows how these models could be used in practice, not just evaluated offline.-->
 
 ---
 
@@ -118,6 +118,8 @@ All feature statistics were learned on the training set and applied identically 
 ---
 
 ## **Models Implemented**
+
+As the dataset is highly imbalanced with mostly benign images and rare positive images, PR-AUC (Precision–Recall curve) was used to rank the models. 
 
 ### **1. Baseline Model with metadata: LogisticRegression**
 
@@ -200,6 +202,11 @@ Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a tw
 
 <img width="594" height="206" alt="image" src="https://github.com/user-attachments/assets/d7ab3e3c-501c-426a-95a9-7e039ea899fb" />
 
+## ** Threshold, Recall & Confusion Matrix
+
+Scanned all possible thresholds on the validation set using the precision–recall curve (PR-AUC), and selected the threshold that achieves **Recall** (Of all the positive images, how many did we identify ?)  **≥ 0.85** while maximizing precision among those candidates. That threshold was **0.339062**.
+
+<img width="393" height="382" alt="image" src="https://github.com/user-attachments/assets/b3940a3b-4d9a-4859-b49b-bffd40d85d5e" />
 
 
 # Capstone Results Summary
