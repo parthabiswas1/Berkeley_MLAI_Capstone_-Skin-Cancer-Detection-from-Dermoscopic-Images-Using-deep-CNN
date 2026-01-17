@@ -202,7 +202,7 @@ Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a tw
 
 <img width="594" height="206" alt="image" src="https://github.com/user-attachments/assets/d7ab3e3c-501c-426a-95a9-7e039ea899fb" />
 
-## ** Threshold, Recall & Confusion Matrix
+## **Threshold, Recall & Confusion Matrix**
 
 Scanned all possible thresholds on the validation set using the precision–recall curve (PR-AUC), and selected the threshold that achieves **Recall** (Of all the positive images, how many did we identify ?)  **≥ 0.85** while maximizing precision among those candidates. That threshold was **0.339062**.
 
