@@ -208,6 +208,7 @@ Scanned all possible thresholds on the validation set using the precision–reca
 
 <img width="393" height="382" alt="image" src="https://github.com/user-attachments/assets/b3940a3b-4d9a-4859-b49b-bffd40d85d5e" />
 
+---
 
 # Capstone Results Summary
 
@@ -224,11 +225,25 @@ Scanned all possible thresholds on the validation set using the precision–reca
 |   8 | Stacking OOF(K=3): CNN & tuned LR(meta)                                 | VAL     |  0.09434 |   0.84907 |          0.2874 |             0.0969 |           0.4138 |              0.0696 |
 |   9 | Best model on TEST (same as #7)                                         | TEST    |  0.13381 |   0.86871 |          0.3761 |             0.1285 |           0.5046 |              0.0863 |
 
-
+---
 # Best Model
 The Best model performance was by **Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler** 
+---
 
+# Next steps towards medical grade classification
 
+There are several steps that can be taken to move towards medical grade classification, if the restrictions on compute and storage are removed.
 
+* **Data Upgrade** 
+  * Use full resolution images for processing.
+  * Increase the size and quality of the dataset by including images from various clinics of different countires, more male, female, age and skin tone mix.
+  * Improve the quality of metadata by using domain experts and analyizing the written analysis about the images by doctors, to create and or  substantiallyincrease the featureset.
+  * Impove the imbalance of dataset by including a balance of malignant and benign images.
+
+* **Better Models**
+  * Use more powerful backbones (EffNetV2 / ConvNeXt).
+  * Use modern training tricks. Mixup- Blend two images and their label. Cutmix- Paste a patch from one image onto another. label smoothing- Don’t treat labels as 100% certain.
+  * improve image processing. Use techniques like 'dry hair shaving' to remove hair from the images. Better lesion cropping/segmentation, remove rulers if present in the image.
+  * 
 ---
 
