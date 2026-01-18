@@ -226,8 +226,11 @@ Scanned all possible thresholds on the validation set using the precision–reca
 |   9 | Best model on TEST (same as #7)                                         | TEST    |  0.13381 |   0.86871 |          0.3761 |             0.1285 |           0.5046 |              0.0863 |
 
 ---
+
 # Best Model
-The Best model performance was by **Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler** 
+
+The Best model performance was by Convolutional Neural Network (CNN) Model - EfficientNet-B0 classifier using a two-stage fine-tuning approach with Albumentations-based image augmentation and imbalance handling with WeightedRandomSampler.
+
 ---
 
 # Next steps towards medical grade classification
