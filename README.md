@@ -250,3 +250,23 @@ There are several steps that can be taken to move towards medical grade classifi
   * 
 ---
 
+# Work above and byond the requirements of the Captstone
+
+Created a Skin Lesion screening app that lets an user upload a skin lesion image and shows the model’s estimated probability that it is malignant or benign. 
+<img width="1012" height="666" alt="image" src="https://github.com/user-attachments/assets/7a26a0d0-0f55-496a-a4a3-af8b66b3f0fd" />
+BENIGN
+
+
+It also highlights the image regions that most influenced the prediction using a Grad-CAM heatmap overlay. 
+
+<img width="1013" height="661" alt="image" src="https://github.com/user-attachments/assets/f6092363-c8ba-4a4a-b603-cce1355fed24" />
+
+In the background, the app uses a fine-tuned EfficientNet-B0 image model to estimate how likely a skin lesion looks malignant. It then compares that score to the chosen threshold  to label the image as “benign” or “malignant.”
+
+The app displays Grad-CAM which in simple terms, works by looking inside the model to see which parts of the image most influenced its malignant score. It turns that importance into a heatmap, then resizes it to the original image and overlays to show where the model was inspecting most. 
+
+A Chat interface helps users answer simple questions based on retrevial augmented generation (RAG) with a limited knowledgebase of documents.
+
+The App can be accessed by this URL:  https://huggingface.co/spaces/parthab/berkeley_capstone. 
+
+*(The App may or may not work depending on the free resources available)*
