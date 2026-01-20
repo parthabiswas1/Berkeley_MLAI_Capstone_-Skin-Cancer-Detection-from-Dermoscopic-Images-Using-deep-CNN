@@ -260,6 +260,7 @@ BENIGN
 It also highlights the image regions that most influenced the prediction using a Grad-CAM heatmap overlay. 
 
 <img width="1013" height="661" alt="image" src="https://github.com/user-attachments/assets/f6092363-c8ba-4a4a-b603-cce1355fed24" />
+MALIGNANT
 
 In the background, the app uses a fine-tuned EfficientNet-B0 image model to estimate how likely a skin lesion looks malignant. It then compares that score to the chosen threshold  to label the image as “benign” or “malignant.”
 
